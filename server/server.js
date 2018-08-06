@@ -20,19 +20,13 @@ io.on('connection',(socket) => {
   //   createdAt: 123
   // });//handler für neue Email, call to listener in index.js
 
-  socket.emit('newMessage',{
-    from: 'fromsomeone@example.com',
-    text: 'some text',
-    createdAt: 123
-  });//handler für neue Message, call to listener in index.js
-
-
-  // socket.on('createEmail', (newEmail) => {
-  //   console.log('createEmail',newEmail);
-  // });//listener für neue Email von client
-
-  socket.on('createMessage', (newMessage) => {
-    console.log('createMessage',newMessage);
+  socket.on('createMessage', (message) => {
+    console.log('createMessage',message);
+    io.emit('newMessage',{
+      from: message.from,
+      text: message.text,
+      createdAt: new Date().getTime()
+    });
   });//listener für neue Message von client
 
   socket.on('disconnect',(socket) => {

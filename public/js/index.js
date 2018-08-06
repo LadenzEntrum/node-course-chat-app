@@ -4,16 +4,12 @@ socket.on('connect', function ()  {
   console.log('Connected to server from index.html');
 
   //handler für neue Email to send to server
-  socket.emit('createEmail',{
-    to: 'tosomeone@example.com',
-    text:'sometexttosend'
-  });
+  // socket.emit('createEmail',{
+  //   to: 'tosomeone@example.com',
+  //   text:'sometexttosend'
+  // });
 
-  //handler für neue Message to send to server
-  socket.emit('createMessage',{
-    from: 'fromsomeone@example.com',
-    text:'sometextfromclient'
-  });
+
 });
 
 socket.on('disconnect',function ()  {
