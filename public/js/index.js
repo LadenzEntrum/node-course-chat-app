@@ -8,8 +8,6 @@ socket.on('connect', function ()  {
   //   to: 'tosomeone@example.com',
   //   text:'sometexttosend'
   // });
-
-
 });
 
 socket.on('disconnect',function ()  {
@@ -19,9 +17,9 @@ socket.on('disconnect',function ()  {
 //unten listener für new message
 socket.on('newMessage', function (message) {
   console.log('New message',message);
-  var li = jQuery('<li></li>');
-  li.text(`${message.from}: ${message.text}`);
-  jQuery('#messages').append(li);
+  var li = jQuery('<li></li>');//create element as object
+  li.text(`${message.from}: ${message.text}`);//manipulate object
+  jQuery('#messages').append(li);//show object on page
 });
 
 jQuery('#message-form').on('submit', function (e) {
