@@ -17,9 +17,10 @@ socket.on('disconnect',function ()  {
 //unten listener für new message
 
 socket.on('newMessage', function (message) {
+  var formattedTime = moment(message.createdAt).format('h:mm a');
   console.log('New message',message);
   var li = jQuery('<li></li>');//create element as object
-  li.text(`${message.from}: ${message.text}`);//manipulate object
+  li.text(`${message.from} ${formattedTime}: ${message.text}`);//manipulate object
   jQuery('#messages').append(li);//show object on page
 });
 
@@ -27,8 +28,8 @@ socket.on('newLocationMessage', function (message) {
   //variablen verhindern js injection
   var li = jQuery('<li></li>');//create element as object
   var a = jQuery('<a target="_blank">My current location</a>');//target _blank öffnet neuen tab
-
-  li.text(`${message.from}: `);//manipulate object
+  var formattedTime = moment(message.createdAt).format('h:mm a');
+  li.text(`${message.from} ${formattedTime}: `);//manipulate object
   a.attr('href',message.url);//zwei argumente sind attribut und wert, ein attribut ist z.b. der tab mit target
   li.append(a);
   jQuery('#messages').append(li);//show object on page
